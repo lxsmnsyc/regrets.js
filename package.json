@@ -1,0 +1,30 @@
+{
+  "name": "regrets-js",
+  "version": "0.1.0",
+  "description": "Asynchronous decision-making in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LXSMNSYC/regrets.js.git"
+  },
+  "keywords": [
+    "async",
+    "promise"
+  ],
+  "author": "LXSMNSYC (alexis.munsayac@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LXSMNSYC/regrets.js/issues"
+  },
+  "homepage": "https://github.com/LXSMNSYC/regrets.js#readme",
+  "devDependencies": {
+    "jsdoc": "^3.5.5",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
+    "rollup": "^1.6.0",
+    "terser": "^3.17.0"
+  }
+}
