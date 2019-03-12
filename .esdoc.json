@@ -1,0 +1,19 @@
+{
+  "source": "./src/esnext",
+  "destination": "./docs/esdoc",
+  "plugins": 
+  [ 
+    {
+      "name": "esdoc-standard-plugin"
+    },
+    {
+      "name": "esdoc-integrate-test-plugin",
+      "option": {
+        "source": "./test/esnext/",
+        "interfaces": ["describe", "it", "context", "suite", "test"],
+        "includes": [".\\.js$"],
+        "excludes": ["\\.config\\.js$"]
+      }
+    }
+  ]
+}
