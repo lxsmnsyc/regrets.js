@@ -4,7 +4,19 @@
   "description": "Asynchronous decision-making in JS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "linux-mocha": "./node_modules/.bin/mocha --require @babel/register -R spec --recursive",
+    "linux-test": "./node_modules/.bin/nyc --reporter=html npm run linux-mocha",
+    "linux-docs": "./node_modules/.bin/esdoc",
+
+    "win-mocha": "node node_modules/mocha/bin/mocha --require @babel/register -R spec --recursive",
+    "win-test": "node node_modules/nyc/bin/nyc.js --reporter=html npm run win-mocha",
+    "win-docs": "node node_modules/esdoc/out/src/ESDocCLI.js",
+
+    "mocha": "npm run linux-mocha || npm run win-mocha",
+    "test": "npm run linux-test || npm run win-test",
+    "docs": "npm run linux-docs || npm run win-docs",
+
+    "build": "npm test"
   },
   "repository": {
     "type": "git",
@@ -21,6 +33,9 @@
   },
   "homepage": "https://github.com/LXSMNSYC/regrets.js#readme",
   "devDependencies": {
+    "esdoc": "^1.1.0",
+    "esdoc-integrate-test-plugin": "^1.0.0",
+    "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
