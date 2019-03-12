@@ -1,6 +1,6 @@
 {
-  "source": "./src/esnext",
-  "destination": "./docs/esdoc",
+  "source": "./src/",
+  "destination": "./docs/",
   "plugins": 
   [ 
     {
