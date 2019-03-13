@@ -1,3 +1,4 @@
+
 /**
  * @license
  * MIT License
@@ -25,14 +26,33 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+import { resolve } from './utils';
+/**
+ * @ignore
+ */
+const defer = (item, scope) => resolve(item).then(x => resolve(scope(x)));
 
-const defer = (item, scope) => Promise.resolve(item).then(x => Promise.resolve(scope(x)));
-
+/**
+ * Applies asynchronous iteration for iterables
+ */
 export default class AsyncForEach {
+  /**
+   * Creates an AsyncForEach instance
+   * with the given iterable
+   * @param {Iterable} iterable
+   */
   constructor(iterable) {
+    /**
+     * @ignore
+     */
     this.iterable = iterable;
   }
 
+  /**
+   * Initiate iteration of items from the iterable
+   * @param {Function} scope
+   * @returns {Promise}
+   */
   do(scope) {
     let prev;
     // eslint-disable-next-line no-restricted-syntax
@@ -43,6 +63,6 @@ export default class AsyncForEach {
         prev = prev.then(() => defer(item, scope));
       }
     }
-    return prev;
+    return resolve(prev);
   }
 }
