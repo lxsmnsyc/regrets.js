@@ -2,6 +2,11 @@
 
 ⏰ Asynchronous control structures in JS
 
+[![NPM](https://nodei.co/npm/regrets-js.png)](https://nodei.co/npm/regrets-js/)
+
+[![HitCount](http://hits.dwyl.io/lxsmnsyc/regrets.js.svg)](http://hits.dwyl.io/lxsmnsyc/regrets.js)
+[![](https://data.jsdelivr.com/v1/package/npm/regrets-js/badge)](https://www.jsdelivr.com/package/npm/regrets-js)
+
 | Platform | Build Status |
 | --- | --- |
 | Linux | [![Build Status](https://travis-ci.org/LXSMNSYC/regrets.js.svg?branch=master)](https://travis-ci.org/LXSMNSYC/regrets.js) |
@@ -23,10 +28,49 @@ Regrets provides asynchronous:
 * boolean expressions (and, or, not)
 * comparisons (eq, ne, gt, lt, ge, le)
 * switch-case-default
-* for
 * foreach
+
+You can read more here at the [documentation site](https://lxsmnsyc.github.io/regrets.js/).
   
 ## Usage
+
+### Installation
+
+NPM
+
+```bash
+npm i regrets-js
+```
+
+CDN
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/regrets-js/dist/index.min.js"></script>
+```
+
+### Loading the module
+
+CommonJS
+
+```js
+const regrets = require('regrets-js');
+```
+
+### Example
+
+#### Delayed odd or even
+
+Checks asynchronously if the number is an odd or an even number.
+
+The result is resolved after 5 seconds.
+
+```js
+const sleep = (x, y) => new Promise(z => setTimeout(z, y, x));
+
+const checkParity = x => new regrets.if(sleep(x % 2 === 0, 5000))
+  .then(() => console.log('The number is even'))
+  .else(() => console.log('The number is odd'))
+```
 
 ## Build
 
