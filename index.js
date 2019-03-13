@@ -67,7 +67,6 @@ const all = Promise.all.bind(Promise);
  */
 
 /**
- * @desc
  * Fundamental async decision-making control structure
  *
  * AsyncIf evaluates the given value, synchronous or asynchronous
@@ -78,7 +77,6 @@ const all = Promise.all.bind(Promise);
  */
 class AsyncIf {
   /**
-   * @desc
    * Creates an AsyncIf instance
    *
    * It is highly recommended that the given value
@@ -89,7 +87,6 @@ class AsyncIf {
    */
   constructor(promise) {
     /**
-     * @desc
      * The promise context of the AsyncIf instance
      * @type {?Promise}
      */
@@ -97,7 +94,6 @@ class AsyncIf {
   }
 
   /**
-   * @desc
    * Attaches a callback to an AsyncIf instance and executes
    * the callback if the AsyncIf's resolved value is truthy.
    * @example
@@ -115,7 +111,6 @@ class AsyncIf {
   }
 
   /**
-   * @desc
    * Attaches a callback to an AsyncIf instance and executes
    * the callback if the AsyncIf's resolved value is falsey.
    * @example
@@ -133,7 +128,6 @@ class AsyncIf {
   }
 
   /**
-   * @desc
    * Attaches an AsyncIf to an AsyncIf instance that evaluates
    * if the AsyncIf's resolved value is falsey.
    * @example
@@ -149,21 +143,18 @@ class AsyncIf {
 }
 
 /**
- * @desc
- * a switch statement is a type of selection control mechanism
+ * A switch statement is a type of selection control mechanism
  * used to allow the value of a variable or expression to change
  * the control flow of program execution via search and map.
  */
 class AsyncSwitch {
   /**
-   * @desc
    * Creates an AsyncSwitch instance given
    * the subject to be selected with.
    * @param {Function|Promise|any} subject
    */
   constructor(subject) {
     /**
-     * @desc
      * @type {Function|Promise|any}
      */
     this.subject = subject;
@@ -175,7 +166,6 @@ class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Register values to be selected from
    * @param  {...any} matches
    * @returns {AsyncSwitch}
@@ -229,7 +219,6 @@ class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Initiate a selection mechanism given the previous
    * cases.
    * @param {Function} scope
@@ -251,7 +240,6 @@ class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Create a break signal that tells the next cases to
    * not execute if the previous case is successful.
    *
@@ -265,7 +253,6 @@ class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Attaches a callback that is executed with or without
    * any cases
    * @param {Function} scope
@@ -319,7 +306,6 @@ const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator()
 );
 
 /**
- * @desc
  * A repetitive control structure that both evaluates the condition
  * and executes it scope asynchrously.
  * @example
@@ -328,13 +314,11 @@ const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator()
  */
 class AsyncWhile {
   /**
-   * @desc
    * Creates an AsyncWhile instance
    * @param {Function|Promise|any} evaluator a Promise or a function that is evaluated every cycle.
    */
   constructor(evaluator) {
     /**
-     * @desc
      * a Promise or a function that is evaluated every cycle.
      * @type {Function|Promise|any}
      */
@@ -342,7 +326,6 @@ class AsyncWhile {
   }
 
   /**
-   * @desc
    * Attaches a callback to the AsyncWhile that is executed while the evaluator resolves to true.
    * @param {Function} scope
    * @example
@@ -392,20 +375,17 @@ const Repeat = (evaluator, scope, isFunction) => resolve(scope()).then(
 );
 
 /**
- * @desc
  * A repetitive control structure that executes first then checks
  * the evaluator. If the evaluator is false, the cycle repeats.
  */
 class AsyncRepeat {
   /**
-   * @desc
    * Creates an AsyncRepeat instance with a given function
    * that serves as the scope.
    * @param {Function} scope
    */
   constructor(scope) {
     /**
-     * @desc
      * a function that serves as the scope for the AsyncRepeat.
      * Executes every cycle.
      * @type {Function}
@@ -414,7 +394,6 @@ class AsyncRepeat {
   }
 
   /**
-   * @desc
    * initiate the repeating cycle with the given evaluator
    * @example
    * new AsyncRepeat(() => x++).until(() => x === 3);
@@ -503,7 +482,6 @@ class AsyncForEach {
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an logical negation
  * @param {?Promise} x
  * @return {Promise}
@@ -538,7 +516,6 @@ const Not = x => resolve(x).then(y => !y);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply a logical conjunction.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -574,7 +551,6 @@ const And = (a, b) => all([a, b]).then(v => v[0] && v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply a logical disjunction.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -610,7 +586,6 @@ const Or = (a, b) => all([a, b]).then(v => v[0] || v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an equality comparison.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -646,7 +621,6 @@ const EQ = (a, b) => all([a, b]).then(v => v[0] === v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an inequality comparison.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -682,7 +656,6 @@ const NE = (a, b) => all([a, b]).then(v => v[0] !== v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an greater-than comparison.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -718,7 +691,6 @@ const GT = (a, b) => all([a, b]).then(v => v[0] > v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an greater-than-or-equal comparison.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -754,7 +726,6 @@ const GE = (a, b) => all([a, b]).then(v => v[0] >= v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an less-than-or-equal comparison.
  * @param {?Promise} a
  * @param {?Promise} b
@@ -790,7 +761,6 @@ const LE = (a, b) => all([a, b]).then(v => v[0] <= v[1]);
  * @copyright Alexis Munsayac 2019
  */
 /**
- * @desc
  * Asynchronously apply an less-than comparison.
  * @param {?Promise} a
  * @param {?Promise} b
