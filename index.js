@@ -29,6 +29,36 @@ Object.defineProperty(exports, '__esModule', { value: true });
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+const resolve = Promise.resolve.bind(Promise);
+const all = Promise.all.bind(Promise);
+
+/**
+ * @license
+ * MIT License
+ *
+ * Copyright (c) 2019 Alexis Munsayac
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ *
+ * @author Alexis Munsayac <alexis.munsayac@gmail.com>
+ * @copyright Alexis Munsayac 2019
+ */
 
 /**
  * @desc
@@ -57,7 +87,7 @@ class AsyncIf {
      * The promise context of the AsyncIf instance
      * @public
      */
-    this.promise = Promise.resolve(promise);
+    this.promise = resolve(promise);
   }
 
   /**
@@ -72,7 +102,7 @@ class AsyncIf {
   then(scope) {
     if (typeof scope === 'function') {
       return new AsyncIf(
-        this.promise.then(x => (x ? Promise.resolve(scope()).then(() => x) : this.promise)),
+        this.promise.then(x => (x ? resolve(scope()).then(() => x) : this.promise)),
       );
     }
     return this;
@@ -90,7 +120,7 @@ class AsyncIf {
   else(scope) {
     if (typeof scope === 'function') {
       return new AsyncIf(
-        this.promise.then(x => (x ? this.promise : Promise.resolve(scope()).then(() => x))),
+        this.promise.then(x => (x ? this.promise : resolve(scope()).then(() => x))),
       );
     }
     return this;
@@ -170,8 +200,8 @@ class AsyncSwitch {
  * @copyright Alexis Munsayac 2019
  */
 // eslint-disable-next-line max-len
-const While = (evaluator, scope, isFunction) => Promise.resolve(isFunction ? evaluator() : evaluator).then(
-  x => (x ? Promise.resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
+const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator() : evaluator).then(
+  x => (x ? resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
 );
 
 /**
@@ -267,7 +297,7 @@ class AsyncRepeat {
  * @param {?Promise} x
  * @return {Promise}
  */
-const Not = x => Promise.resolve(x).then(y => !y);
+const Not = x => resolve(x).then(y => !y);
 
 /**
  * @license
@@ -296,7 +326,6 @@ const Not = x => Promise.resolve(x).then(y => !y);
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
-
 /**
  * @desc
  * Asynchronously apply a logical conjunction.
@@ -304,7 +333,7 @@ const Not = x => Promise.resolve(x).then(y => !y);
  * @param {?Promise} b
  * @return {Promise}
  */
-const And = (a, b) => Promise.all([a, b]).then(v => v[0] && v[1]);
+const And = (a, b) => all([a, b]).then(v => v[0] && v[1]);
 
 /**
  * @license
@@ -340,7 +369,7 @@ const And = (a, b) => Promise.all([a, b]).then(v => v[0] && v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const Or = (a, b) => Promise.all([a, b]).then(v => v[0] || v[1]);
+const Or = (a, b) => all([a, b]).then(v => v[0] || v[1]);
 
 /**
  * @license
@@ -369,7 +398,6 @@ const Or = (a, b) => Promise.all([a, b]).then(v => v[0] || v[1]);
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
-
 /**
  * @desc
  * Asynchronously apply an equality comparison.
@@ -377,7 +405,7 @@ const Or = (a, b) => Promise.all([a, b]).then(v => v[0] || v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const EQ = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
+const EQ = (a, b) => all([a, b]).then(v => v[0] === v[1]);
 
 /**
  * @license
@@ -413,7 +441,7 @@ const EQ = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const NE = (a, b) => Promise.all([a, b]).then(v => v[0] !== v[1]);
+const NE = (a, b) => all([a, b]).then(v => v[0] !== v[1]);
 
 /**
  * @license
@@ -449,7 +477,7 @@ const NE = (a, b) => Promise.all([a, b]).then(v => v[0] !== v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const GT = (a, b) => Promise.all([a, b]).then(v => v[0] > v[1]);
+const GT = (a, b) => all([a, b]).then(v => v[0] > v[1]);
 
 /**
  * @license
@@ -485,7 +513,7 @@ const GT = (a, b) => Promise.all([a, b]).then(v => v[0] > v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const GE = (a, b) => Promise.all([a, b]).then(v => v[0] >= v[1]);
+const GE = (a, b) => all([a, b]).then(v => v[0] >= v[1]);
 
 /**
  * @license
@@ -521,7 +549,7 @@ const GE = (a, b) => Promise.all([a, b]).then(v => v[0] >= v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const LE = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
+const LE = (a, b) => all([a, b]).then(v => v[0] <= v[1]);
 
 /**
  * @license
@@ -557,7 +585,7 @@ const LE = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
  * @param {?Promise} b
  * @return {Promise}
  */
-const LT = (a, b) => Promise.all([a, b]).then(v => v[0] < v[1]);
+const LT = (a, b) => all([a, b]).then(v => v[0] < v[1]);
 
 /**
  * @license
