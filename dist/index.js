@@ -66,7 +66,6 @@ var regrets = (function (exports) {
    */
 
   /**
-   * @desc
    * Fundamental async decision-making control structure
    *
    * AsyncIf evaluates the given value, synchronous or asynchronous
@@ -77,7 +76,6 @@ var regrets = (function (exports) {
    */
   class AsyncIf {
     /**
-     * @desc
      * Creates an AsyncIf instance
      *
      * It is highly recommended that the given value
@@ -88,7 +86,6 @@ var regrets = (function (exports) {
      */
     constructor(promise) {
       /**
-       * @desc
        * The promise context of the AsyncIf instance
        * @type {?Promise}
        */
@@ -96,7 +93,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Attaches a callback to an AsyncIf instance and executes
      * the callback if the AsyncIf's resolved value is truthy.
      * @example
@@ -114,7 +110,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Attaches a callback to an AsyncIf instance and executes
      * the callback if the AsyncIf's resolved value is falsey.
      * @example
@@ -132,7 +127,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Attaches an AsyncIf to an AsyncIf instance that evaluates
      * if the AsyncIf's resolved value is falsey.
      * @example
@@ -148,21 +142,18 @@ var regrets = (function (exports) {
   }
 
   /**
-   * @desc
-   * a switch statement is a type of selection control mechanism
+   * A switch statement is a type of selection control mechanism
    * used to allow the value of a variable or expression to change
    * the control flow of program execution via search and map.
    */
   class AsyncSwitch {
     /**
-     * @desc
      * Creates an AsyncSwitch instance given
      * the subject to be selected with.
      * @param {Function|Promise|any} subject
      */
     constructor(subject) {
       /**
-       * @desc
        * @type {Function|Promise|any}
        */
       this.subject = subject;
@@ -174,7 +165,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Register values to be selected from
      * @param  {...any} matches
      * @returns {AsyncSwitch}
@@ -228,7 +218,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Initiate a selection mechanism given the previous
      * cases.
      * @param {Function} scope
@@ -250,7 +239,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Create a break signal that tells the next cases to
      * not execute if the previous case is successful.
      *
@@ -264,7 +252,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Attaches a callback that is executed with or without
      * any cases
      * @param {Function} scope
@@ -318,7 +305,6 @@ var regrets = (function (exports) {
   );
 
   /**
-   * @desc
    * A repetitive control structure that both evaluates the condition
    * and executes it scope asynchrously.
    * @example
@@ -327,13 +313,11 @@ var regrets = (function (exports) {
    */
   class AsyncWhile {
     /**
-     * @desc
      * Creates an AsyncWhile instance
      * @param {Function|Promise|any} evaluator a Promise or a function that is evaluated every cycle.
      */
     constructor(evaluator) {
       /**
-       * @desc
        * a Promise or a function that is evaluated every cycle.
        * @type {Function|Promise|any}
        */
@@ -341,7 +325,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * Attaches a callback to the AsyncWhile that is executed while the evaluator resolves to true.
      * @param {Function} scope
      * @example
@@ -391,20 +374,17 @@ var regrets = (function (exports) {
   );
 
   /**
-   * @desc
    * A repetitive control structure that executes first then checks
    * the evaluator. If the evaluator is false, the cycle repeats.
    */
   class AsyncRepeat {
     /**
-     * @desc
      * Creates an AsyncRepeat instance with a given function
      * that serves as the scope.
      * @param {Function} scope
      */
     constructor(scope) {
       /**
-       * @desc
        * a function that serves as the scope for the AsyncRepeat.
        * Executes every cycle.
        * @type {Function}
@@ -413,7 +393,6 @@ var regrets = (function (exports) {
     }
 
     /**
-     * @desc
      * initiate the repeating cycle with the given evaluator
      * @example
      * new AsyncRepeat(() => x++).until(() => x === 3);
@@ -502,7 +481,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an logical negation
    * @param {?Promise} x
    * @return {Promise}
@@ -537,7 +515,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply a logical conjunction.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -573,7 +550,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply a logical disjunction.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -609,7 +585,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an equality comparison.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -645,7 +620,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an inequality comparison.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -681,7 +655,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an greater-than comparison.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -717,7 +690,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an greater-than-or-equal comparison.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -753,7 +725,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an less-than-or-equal comparison.
    * @param {?Promise} a
    * @param {?Promise} b
@@ -789,7 +760,6 @@ var regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
   /**
-   * @desc
    * Asynchronously apply an less-than comparison.
    * @param {?Promise} a
    * @param {?Promise} b
