@@ -32,5 +32,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const GreaterThanOrEqual = (a, b) => Promise.all([a, b]).then(v => v[0] >= v[1]);
-export default GreaterThanOrEqual;
+const GE = (a, b) => Promise.all([a, b]).then(v => v[0] >= v[1]);
+export default GE;
