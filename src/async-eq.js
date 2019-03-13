@@ -25,7 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
-
+import { all } from './utils';
 /**
  * @desc
  * Asynchronously apply an equality comparison.
@@ -33,5 +33,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const EQ = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
+const EQ = (a, b) => all([a, b]).then(v => v[0] === v[1]);
 export default EQ;
