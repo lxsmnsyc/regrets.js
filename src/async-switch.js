@@ -41,9 +41,14 @@ export default class AsyncSwitch {
    * @param {Function|Promise|any} subject
    */
   constructor(subject) {
+    /**
+     * @desc
+     * @type {Function|Promise|any}
+     */
     this.subject = subject;
     /**
      * @private
+     * @ignore
      */
     this.cases = [];
   }
@@ -57,6 +62,7 @@ export default class AsyncSwitch {
   case(...matches) {
     /**
      * @private
+     * @ignore
      */
     this.cases = [...this.cases, ...matches];
     return this;
@@ -68,6 +74,7 @@ export default class AsyncSwitch {
   setParent(parent) {
     /**
      * @private
+     * @ignore
      */
     this.parent = parent;
     return this;
@@ -91,6 +98,10 @@ export default class AsyncSwitch {
       return false;
     }
     if (this.broken) {
+      /**
+       * @private
+       * @ignore
+       */
       this.breakSuccess = true;
     }
     return true;
