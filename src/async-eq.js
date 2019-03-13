@@ -33,5 +33,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const Equals = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
-export default Equals;
+const EQ = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
+export default EQ;
