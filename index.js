@@ -169,7 +169,39 @@ class AsyncSwitch {
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+const While = (evaluator, scope) => Promise.resolve(evaluator).then(
+  x => (x ? Promise.resolve(scope()).then(() => While(evaluator, scope)) : false),
+);
+
+/**
+ * @desc
+ * A repetitive constrol structure that both evaluates the condition
+ * and executes it scope asynchrously.
+ * @example
+ * new AsyncWhile(sleep(5000, true)).do(() => console.log("5000ms passed"));
+ *
+ */
 class AsyncWhile {
+  /**
+   * @desc
+   * Creates an AsyncWhile instance
+   * @param {Function|Promise} evaluator a Promise or a function that is evaluated every cycle.
+   */
+  constructor(evaluator) {
+    this.evaluator = evaluator;
+  }
+
+  /**
+   * @desc
+   * Attaches a callback to the AsyncWhile that is executed while the evaluator resolves to true.
+   * @param {Function} scope
+   * @returns {AsyncWhile} the same reference
+   */
+  do(scope) {
+    const { evaluator } = this;
+    While(typeof evaluator === 'function' ? evaluator() : evaluator, scope);
+    return this;
+  }
 }
 
 /**
@@ -235,7 +267,7 @@ class AsyncRepeat {
  * @param {?Promise} x
  * @return {Promise}
  */
-const Not = x => x.then(y => !y);
+const Not = x => Promise.resolve(x).then(y => !y);
 
 /**
  * @license
