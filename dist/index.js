@@ -28,7 +28,13 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
+  /**
+   * @ignore
+   */
   const resolve = Promise.resolve.bind(Promise);
+  /**
+   * @ignore
+   */
   const all = Promise.all.bind(Promise);
 
   /**
@@ -84,7 +90,7 @@ var Regrets = (function (exports) {
       /**
        * @desc
        * The promise context of the AsyncIf instance
-       * @public
+       * @type {?Promise}
        */
       this.promise = resolve(promise);
     }
@@ -198,9 +204,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-  // eslint-disable-next-line max-len
+
+  /**
+   * @ignore
+   */
   const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator() : evaluator).then(
-    x => (x ? resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
+    x => (x ? resolve(scope()).then(
+      () => While(evaluator, scope, isFunction),
+    ) : false),
   );
 
   /**
@@ -215,9 +226,14 @@ var Regrets = (function (exports) {
     /**
      * @desc
      * Creates an AsyncWhile instance
-     * @param {Function|Promise} evaluator a Promise or a function that is evaluated every cycle.
+     * @param {Function|Promise|any} evaluator a Promise or a function that is evaluated every cycle.
      */
     constructor(evaluator) {
+      /**
+       * @desc
+       * a Promise or a function that is evaluated every cycle.
+       * @type {Function|Promise|any}
+       */
       this.evaluator = evaluator;
     }
 
@@ -225,11 +241,12 @@ var Regrets = (function (exports) {
      * @desc
      * Attaches a callback to the AsyncWhile that is executed while the evaluator resolves to true.
      * @param {Function} scope
-     * @returns {AsyncWhile} the same reference
+     * @example
+     * new AsyncWhile(() => x < 3).do(() => x++);
+     * @returns {Promise}
      */
     do(scope) {
-      While(this.evaluator, scope, typeof this.evaluator === 'function');
-      return this;
+      return While(this.evaluator, scope, typeof this.evaluator === 'function');
     }
   }
 
@@ -260,7 +277,49 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
+
+  /**
+   * @ignore
+   */
+  const Repeat = (evaluator, scope, isFunction) => resolve(scope()).then(
+    () => resolve(isFunction ? evaluator() : evaluator).then(
+      x => (x ? false : Repeat(evaluator, scope, isFunction)),
+    ),
+  );
+
+  /**
+   * @desc
+   * A repetitive control structure that executes first then checks
+   * the evaluator. If the evaluator is false, the cycle repeats.
+   */
   class AsyncRepeat {
+    /**
+     * @desc
+     * Creates an AsyncRepeat instance with a given function
+     * that serves as the scope.
+     * @param {Function} scope
+     */
+    constructor(scope) {
+      /**
+       * @desc
+       * a function that serves as the scope for the AsyncRepeat.
+       * Executes every cycle.
+       * @type {Function}
+       */
+      this.scope = scope;
+    }
+
+    /**
+     * @desc
+     * initiate the repeating cycle with the given evaluator
+     * @example
+     * new AsyncRepeat(() => x++).until(() => x === 3);
+     * @param {Function|Promise|any} evaluator
+     * @returns {Promise}
+     */
+    until(evaluator) {
+      return Repeat(evaluator, this.scope, typeof evaluator === 'function');
+    }
   }
 
   /**
