@@ -25,6 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+import { resolve } from './utils';
 
 /**
  * @desc
@@ -53,7 +54,7 @@ export default class AsyncIf {
      * The promise context of the AsyncIf instance
      * @public
      */
-    this.promise = Promise.resolve(promise);
+    this.promise = resolve(promise);
   }
 
   /**
@@ -68,7 +69,7 @@ export default class AsyncIf {
   then(scope) {
     if (typeof scope === 'function') {
       return new AsyncIf(
-        this.promise.then(x => (x ? Promise.resolve(scope()).then(() => x) : this.promise)),
+        this.promise.then(x => (x ? resolve(scope()).then(() => x) : this.promise)),
       );
     }
     return this;
@@ -86,7 +87,7 @@ export default class AsyncIf {
   else(scope) {
     if (typeof scope === 'function') {
       return new AsyncIf(
-        this.promise.then(x => (x ? this.promise : Promise.resolve(scope()).then(() => x))),
+        this.promise.then(x => (x ? this.promise : resolve(scope()).then(() => x))),
       );
     }
     return this;
