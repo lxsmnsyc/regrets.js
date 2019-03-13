@@ -52,7 +52,7 @@ export default class AsyncIf {
     /**
      * @desc
      * The promise context of the AsyncIf instance
-     * @public
+     * @type {?Promise}
      */
     this.promise = resolve(promise);
   }
