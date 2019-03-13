@@ -28,21 +28,18 @@
  */
 import { resolve, all } from './utils';
 /**
- * @desc
- * a switch statement is a type of selection control mechanism
+ * A switch statement is a type of selection control mechanism
  * used to allow the value of a variable or expression to change
  * the control flow of program execution via search and map.
  */
 export default class AsyncSwitch {
   /**
-   * @desc
    * Creates an AsyncSwitch instance given
    * the subject to be selected with.
    * @param {Function|Promise|any} subject
    */
   constructor(subject) {
     /**
-     * @desc
      * @type {Function|Promise|any}
      */
     this.subject = subject;
@@ -54,7 +51,6 @@ export default class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Register values to be selected from
    * @param  {...any} matches
    * @returns {AsyncSwitch}
@@ -108,7 +104,6 @@ export default class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Initiate a selection mechanism given the previous
    * cases.
    * @param {Function} scope
@@ -130,7 +125,6 @@ export default class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Create a break signal that tells the next cases to
    * not execute if the previous case is successful.
    *
@@ -144,7 +138,6 @@ export default class AsyncSwitch {
   }
 
   /**
-   * @desc
    * Attaches a callback that is executed with or without
    * any cases
    * @param {Function} scope
