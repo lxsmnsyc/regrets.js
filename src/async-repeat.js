@@ -37,20 +37,17 @@ const Repeat = (evaluator, scope, isFunction) => resolve(scope()).then(
 );
 
 /**
- * @desc
  * A repetitive control structure that executes first then checks
  * the evaluator. If the evaluator is false, the cycle repeats.
  */
 export default class AsyncRepeat {
   /**
-   * @desc
    * Creates an AsyncRepeat instance with a given function
    * that serves as the scope.
    * @param {Function} scope
    */
   constructor(scope) {
     /**
-     * @desc
      * a function that serves as the scope for the AsyncRepeat.
      * Executes every cycle.
      * @type {Function}
@@ -59,7 +56,6 @@ export default class AsyncRepeat {
   }
 
   /**
-   * @desc
    * initiate the repeating cycle with the given evaluator
    * @example
    * new AsyncRepeat(() => x++).until(() => x === 3);
