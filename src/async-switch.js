@@ -1,3 +1,4 @@
+
 /**
  * @license
  * MIT License
@@ -25,5 +26,125 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+import { resolve, all } from './utils';
+/**
+ * @desc
+ * a switch statement is a type of selection control mechanism
+ * used to allow the value of a variable or expression to change
+ * the control flow of program execution via search and map.
+ */
 export default class AsyncSwitch {
+  /**
+   * @desc
+   * Creates an AsyncSwitch instance given
+   * the subject to be selected with.
+   * @param {Function|Promise|any} subject
+   */
+  constructor(subject) {
+    this.subject = subject;
+    /**
+     * @private
+     */
+    this.cases = [];
+  }
+
+  /**
+   * @desc
+   * Register values to be selected from
+   * @param  {...any} matches
+   * @returns {AsyncSwitch}
+   */
+  case(...matches) {
+    /**
+     * @private
+     */
+    this.cases = [...this.cases, ...matches];
+    return this;
+  }
+
+  /**
+   * @ignore
+   */
+  setParent(parent) {
+    /**
+     * @private
+     */
+    this.parent = parent;
+    return this;
+  }
+
+  /**
+   * @ignore
+   */
+  parentBroken() {
+    if (this.parent instanceof AsyncSwitch) {
+      return this.parent.breakSuccess || this.parent.parentBroken();
+    }
+    return false;
+  }
+
+  /**
+   * @ignore
+   */
+  notBroken() {
+    if (this.breakSuccess || this.parentBroken()) {
+      return false;
+    }
+    if (this.broken) {
+      this.breakSuccess = true;
+    }
+    return true;
+  }
+
+  /**
+   * @desc
+   * Initiate a selection mechanism given the previous
+   * cases.
+   * @param {Function} scope
+   * @returns {AsyncSwitch}
+   */
+  do(scope) {
+    const { subject } = this;
+    const if1 = typeof subject === 'function';
+    const if2 = typeof scope === 'function';
+    return new AsyncSwitch(
+      all(this.cases).then(
+        v => resolve(if1 ? subject() : subject).then(
+          x => (v.includes(x) ? resolve(if2 ? this.notBroken() && resolve(scope()).then(
+            () => x,
+          ) : scope) : x),
+        ),
+      ),
+    ).setParent(this);
+  }
+
+  /**
+   * @desc
+   * Create a break signal that tells the next cases to
+   * not execute if the previous case is successful.
+   *
+   * @returns {AsyncSwitch}
+   */
+  break() {
+    if (this.parent instanceof AsyncSwitch) {
+      this.parent.broken = true;
+    }
+    return this;
+  }
+
+  /**
+   * @desc
+   * Attaches a callback that is executed with or without
+   * any cases
+   * @param {Function} scope
+   * @returns {Promise}
+   */
+  default(scope) {
+    const { subject } = this;
+    const if1 = typeof subject === 'function';
+    const if2 = typeof scope === 'function';
+    return resolve(if1 ? subject() : subject).then(
+      () => (if2 ? !this.parentBroken() && scope() : scope),
+    );
+  }
 }
