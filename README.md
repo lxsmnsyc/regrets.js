@@ -1,5 +1,5 @@
 # regrets.js
-Asynchronous decision-making in JS
+⏰ Asynchronous control structures in JS
 
 | Platform | Build Status |
 | --- | --- |
