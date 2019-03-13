@@ -1,4 +1,5 @@
 # regrets.js
+
 ⏰ Asynchronous control structures in JS
 
 | Platform | Build Status |
@@ -6,15 +7,26 @@
 | Linux | [![Build Status](https://travis-ci.org/LXSMNSYC/regrets.js.svg?branch=master)](https://travis-ci.org/LXSMNSYC/regrets.js) |
 | Windows | [![Build status](https://ci.appveyor.com/api/projects/status/mtsm13ua0ok6dw5j?svg=true)](https://ci.appveyor.com/project/LXSMNSYC/regrets-js) |
 
-
 [![codecov](https://codecov.io/gh/LXSMNSYC/regrets.js/branch/master/graph/badge.svg)](https://codecov.io/gh/LXSMNSYC/regrets.js)
 
 [![Known Vulnerabilities](https://snyk.io/test/github/LXSMNSYC/regrets.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/LXSMNSYC/regrets.js?targetFile=package.json)
 
-## What is regrets?
-Regrets allows asynchronous control structures in JS such as the if-then-else, while and more.
+## What is regrets.js
 
-## Usage 
+regrets.js or Regrets allows asynchronous control structures in JS.
+
+Regrets provides asynchronous:
+
+* if-elseif-else
+* while-do
+* repeat-until
+* boolean expressions (and, or, not)
+* comparisons (eq, ne, gt, lt, ge, le)
+* switch-case-default
+* for
+* foreach
+  
+## Usage
 
 ## Build
 
