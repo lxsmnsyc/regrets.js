@@ -27,7 +27,6 @@
  */
 import { resolve } from './utils';
 /**
- * @desc
  * Asynchronously apply an logical negation
  * @param {?Promise} x
  * @return {Promise}
