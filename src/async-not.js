@@ -31,5 +31,5 @@
  * @param {?Promise} x
  * @return {Promise}
  */
-const Not = x => x.then(y => !y);
+const Not = x => Promise.resolve(x).then(y => !y);
 export default Not;
