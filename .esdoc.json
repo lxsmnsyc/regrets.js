@@ -9,7 +9,7 @@
     {
       "name": "esdoc-integrate-test-plugin",
       "option": {
-        "source": "./test/esnext/",
+        "source": "./test/",
         "interfaces": ["describe", "it", "context", "suite", "test"],
         "includes": [".\\.js$"],
         "excludes": ["\\.config\\.js$"]
