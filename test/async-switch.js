@@ -37,4 +37,24 @@ describe('AsyncSwitch', () => {
       setTimeout(done, 100);
     });
   });
+  describe('#default', () => {
+    it('should return a Promise', () => {
+      assert(new AsyncSwitch(9).case(9).default(() => {}) instanceof Promise);
+    });
+    it('should execute the scope if no break signals are sent', (done) => {
+      new AsyncSwitch(9).case(9).default(done);
+    });
+    it('should execute the scope ifa match is unsuccessful', (done) => {
+      new AsyncSwitch(9).case(8).default(done);
+    });
+    it('should not execute the scope if a break signal is received before.', (done) => {
+      new AsyncSwitch(9)
+        .case(7, 8, 9)
+        .do(() => {})
+        .break()
+        .default(() => done(false));
+
+      setTimeout(done, 100);
+    });
+  });
 });
