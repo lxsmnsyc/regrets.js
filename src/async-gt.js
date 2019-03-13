@@ -27,7 +27,6 @@
  */
 import { all } from './utils';
 /**
- * @desc
  * Asynchronously apply an greater-than comparison.
  * @param {?Promise} a
  * @param {?Promise} b
