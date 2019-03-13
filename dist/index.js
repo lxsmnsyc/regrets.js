@@ -168,13 +168,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-  const While = (evaluator, scope) => Promise.resolve(evaluator).then(
-    x => (x ? Promise.resolve(scope()).then(() => While(evaluator, scope)) : false),
+  // eslint-disable-next-line max-len
+  const While = (evaluator, scope, isFunction) => Promise.resolve(isFunction ? evaluator() : evaluator).then(
+    x => (x ? Promise.resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
   );
 
   /**
    * @desc
-   * A repetitive constrol structure that both evaluates the condition
+   * A repetitive control structure that both evaluates the condition
    * and executes it scope asynchrously.
    * @example
    * new AsyncWhile(sleep(5000, true)).do(() => console.log("5000ms passed"));
@@ -197,8 +198,7 @@ var Regrets = (function (exports) {
      * @returns {AsyncWhile} the same reference
      */
     do(scope) {
-      const { evaluator } = this;
-      While(typeof evaluator === 'function' ? evaluator() : evaluator, scope);
+      While(this.evaluator, scope, typeof this.evaluator === 'function');
       return this;
     }
   }
