@@ -18,16 +18,16 @@ describe('AsyncIf', () => {
       assert(new AsyncIf(true).then(() => {}) instanceof AsyncIf);
     });
     /**
-    *
-    */
+     *
+     */
     it('should execute if the resolved promise is truthy', (done) => {
       const asyncIf = new AsyncIf(true);
 
       asyncIf.then(() => done());
     });
     /**
-    *
-    */
+     *
+     */
     it('should not execute if the resolved promise is falsey', (done) => {
       const asyncIf = new AsyncIf(false);
 
@@ -36,8 +36,8 @@ describe('AsyncIf', () => {
       setTimeout(done, 100);
     });
     /**
-    *
-    */
+     *
+     */
     it('should return the same instance if the passed value is not a function', () => {
       const asyncIf = new AsyncIf(false);
 
@@ -50,26 +50,26 @@ describe('AsyncIf', () => {
     });
   });
   /**
-  *
-  */
+   *
+   */
   describe('#else', () => {
     /**
-    *
-    */
+     *
+     */
     it('should return an AsyncIf instance', () => {
       assert(new AsyncIf(true).else(() => {}) instanceof AsyncIf);
     });
     /**
-    *
-    */
+     *
+     */
     it('should execute if the resolved promise is falsey', (done) => {
       const asyncIf = new AsyncIf(false);
 
       asyncIf.else(() => done());
     });
     /**
-    *
-    */
+     *
+     */
     it('should not execute if the resolved promise is truthy', (done) => {
       const asyncIf = new AsyncIf(true);
 
@@ -78,8 +78,8 @@ describe('AsyncIf', () => {
       setTimeout(done, 100);
     });
     /**
-    *
-    */
+     *
+     */
     it('should return the same instance if the passed value is not a function', () => {
       const asyncIf = new AsyncIf(false);
 
@@ -92,18 +92,18 @@ describe('AsyncIf', () => {
     });
   });
   /**
-  *
-  */
+   *
+   */
   describe('#elseIf', () => {
     /**
-    *
-    */
+     *
+     */
     it('should return an AsyncIf instance', () => {
       assert(new AsyncIf(true).elseIf(true) instanceof AsyncIf);
     });
     /**
-    *
-    */
+     *
+     */
     it('should execute if the resolved promise is falsey', (done) => {
       const x = 2;
 
@@ -111,8 +111,8 @@ describe('AsyncIf', () => {
         .elseIf(x === 2).then(() => done());
     });
     /**
-    *
-    */
+     *
+     */
     it('should not execute if the resolved promise is truthy', (done) => {
       const x = 1;
 
