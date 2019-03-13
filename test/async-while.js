@@ -12,6 +12,7 @@ describe('AsyncWhile', () => {
     it('should execute multiple times until the evaluator is false', (done) => {
       let x = 0;
 
+      // eslint-disable-next-line no-plusplus
       new AsyncWhile(() => x < 3).do(() => x++);
 
       setTimeout(() => {
