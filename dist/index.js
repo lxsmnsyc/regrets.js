@@ -228,7 +228,12 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
+  /**
+   * @desc
+   * Asynchronously apply an logical negation
+   * @param {?Promise} x
+   * @return {Promise}
+   */
   const Not = x => x.then(y => !y);
 
   /**
@@ -259,6 +264,13 @@ var Regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
 
+  /**
+   * @desc
+   * Asynchronously apply a logical conjunction.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
   const And = (a, b) => Promise.all([a, b]).then(v => v[0] && v[1]);
 
   /**
@@ -288,7 +300,13 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
+  /**
+   * @desc
+   * Asynchronously apply a logical disjunction.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
   const Or = (a, b) => Promise.all([a, b]).then(v => v[0] || v[1]);
 
   /**
@@ -319,7 +337,14 @@ var Regrets = (function (exports) {
    * @copyright Alexis Munsayac 2019
    */
 
-  const Equals = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
+  /**
+   * @desc
+   * Asynchronously apply an equality comparison.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
+  const EQ = (a, b) => Promise.all([a, b]).then(v => v[0] === v[1]);
 
   /**
    * @license
@@ -348,8 +373,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
-  const NotEquals = (a, b) => Promise.all([a, b]).then(v => v[0] !== v[1]);
+  /**
+   * @desc
+   * Asynchronously apply an inequality comparison.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
+  const NE = (a, b) => Promise.all([a, b]).then(v => v[0] !== v[1]);
 
   /**
    * @license
@@ -378,8 +409,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
-  const GreaterThan = (a, b) => Promise.all([a, b]).then(v => v[0] > v[1]);
+  /**
+   * @desc
+   * Asynchronously apply an greater-than comparison.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
+  const GT = (a, b) => Promise.all([a, b]).then(v => v[0] > v[1]);
 
   /**
    * @license
@@ -408,8 +445,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
-  const GreaterThanOrEqual = (a, b) => Promise.all([a, b]).then(v => v[0] >= v[1]);
+  /**
+   * @desc
+   * Asynchronously apply an greater-than-or-equal comparison.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
+  const GE = (a, b) => Promise.all([a, b]).then(v => v[0] >= v[1]);
 
   /**
    * @license
@@ -438,8 +481,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
-  const LessThanOrEqual = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
+  /**
+   * @desc
+   * Asynchronously apply an less-than-or-equal comparison.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
+  const LE = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
 
   /**
    * @license
@@ -468,8 +517,14 @@ var Regrets = (function (exports) {
    * @author Alexis Munsayac <alexis.munsayac@gmail.com>
    * @copyright Alexis Munsayac 2019
    */
-
-  const LessThan = (a, b) => Promise.all([a, b]).then(v => v[0] < v[1]);
+  /**
+   * @desc
+   * Asynchronously apply an less-than comparison.
+   * @param {?Promise} a
+   * @param {?Promise} b
+   * @return {Promise}
+   */
+  const LT = (a, b) => Promise.all([a, b]).then(v => v[0] < v[1]);
 
   /**
    * @license
@@ -506,12 +561,12 @@ var Regrets = (function (exports) {
   exports.not = Not;
   exports.and = And;
   exports.or = Or;
-  exports.eq = Equals;
-  exports.ne = NotEquals;
-  exports.gt = GreaterThan;
-  exports.ge = GreaterThanOrEqual;
-  exports.le = LessThanOrEqual;
-  exports.lt = LessThan;
+  exports.eq = EQ;
+  exports.ne = NE;
+  exports.gt = GT;
+  exports.ge = GE;
+  exports.le = LE;
+  exports.lt = LT;
 
   return exports;
 
