@@ -27,10 +27,11 @@
  */
 
 
-export { default as If } from './async-if';
-export { default as Switch } from './async-switch';
-export { default as While } from './async-while';
-export { default as Repeat } from './async-repeat';
+export { default as if } from './async-if';
+export { default as switch } from './async-switch';
+export { default as while } from './async-while';
+export { default as repeat } from './async-repeat';
+export { default as forEach } from './async-for-each';
 
 export { default as not } from './async-not';
 export { default as and } from './async-and';
