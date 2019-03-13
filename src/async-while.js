@@ -37,7 +37,6 @@ const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator()
 );
 
 /**
- * @desc
  * A repetitive control structure that both evaluates the condition
  * and executes it scope asynchrously.
  * @example
@@ -46,13 +45,11 @@ const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator()
  */
 export default class AsyncWhile {
   /**
-   * @desc
    * Creates an AsyncWhile instance
    * @param {Function|Promise|any} evaluator a Promise or a function that is evaluated every cycle.
    */
   constructor(evaluator) {
     /**
-     * @desc
      * a Promise or a function that is evaluated every cycle.
      * @type {Function|Promise|any}
      */
@@ -60,7 +57,6 @@ export default class AsyncWhile {
   }
 
   /**
-   * @desc
    * Attaches a callback to the AsyncWhile that is executed while the evaluator resolves to true.
    * @param {Function} scope
    * @example
