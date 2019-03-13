@@ -2,14 +2,26 @@
 import assert from 'assert';
 import EQ from '../src/async-eq';
 
-describe('Eq', () => {
+/**
+ *
+ */
+describe('EQ', () => {
+  /**
+   *
+   */
   it('should return a Promise', () => {
     assert(EQ(true, true) instanceof Promise);
   });
+  /**
+   *
+   */
   it('should resolve to true if both values are equal', (done) => {
-    EQ(Promise.resolve(true), Promise.resolve(true)).then(x => (x ? done() : done(false)));
+    EQ(true, true).then(x => (x ? done() : done(false)));
   });
+  /**
+   *
+   */
   it('should resolve to false if both values are not equal', (done) => {
-    EQ(Promise.resolve(false), Promise.resolve(true)).then(x => (x ? done(false) : done()));
+    EQ(false, true).then(x => (x ? done(false) : done()));
   });
 });
