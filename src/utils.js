@@ -25,5 +25,11 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+/**
+ * @ignore
+ */
 export const resolve = Promise.resolve.bind(Promise);
+/**
+ * @ignore
+ */
 export const all = Promise.all.bind(Promise);
