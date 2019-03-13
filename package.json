@@ -1,7 +1,7 @@
 {
   "name": "regrets-js",
   "version": "0.1.0",
-  "description": "Asynchronous decision-making in JS",
+  "description": "⏰ Asynchronous control structures in JS",
   "main": "index.js",
   "scripts": {
     "linux-mocha": "./node_modules/.bin/mocha --require @babel/register -R spec --recursive",
