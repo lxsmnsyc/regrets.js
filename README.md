@@ -72,6 +72,31 @@ const checkParity = x => new regrets.if(sleep(x % 2 === 0, 5000))
   .else(() => console.log('The number is odd'))
 ```
 
+#### Sleepy Switch
+
+```js
+const sleep = (x, y) => new Promise(z => setTimeout(z, y, x));
+
+const sleepySwitch = x => new regrets.switch(sleep(x % 3, 2500))
+  .case(0).do(() => console.log('The number is a multiple of 3')).break()
+  .case(1).do(() => console.log('The number is 1 greater than a multiple of 3')).break()
+  .default(() => console.log('The number is 2 greater than a multiple of 3'))
+ 
+sleepySwitch(14634)
+sleepySwitch(1243)
+sleepySwitch(5432)
+```
+
+#### Iterate items at an interval
+
+```js
+const sleep = (x, y) => new Promise(z => setTimeout(z, y, x));
+
+const interval = (x, y) => new regrets.forEach(x).do(v => sleep(v, y).then(console.log));
+
+interval([1, 2, 3, 4, 5], 500);
+```
+
 ## Build
 
 Clone the repo first then run in Terminal:
