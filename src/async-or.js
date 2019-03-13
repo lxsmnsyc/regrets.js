@@ -27,7 +27,6 @@
  */
 import { all } from './utils';
 /**
- * @desc
  * Asynchronously apply a logical disjunction.
  * @param {?Promise} a
  * @param {?Promise} b
