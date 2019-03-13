@@ -25,6 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+import { all } from './utils';
 /**
  * @desc
  * Asynchronously apply an less-than-or-equal comparison.
@@ -32,5 +33,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const LE = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
+const LE = (a, b) => all([a, b]).then(v => v[0] <= v[1]);
 export default LE;
