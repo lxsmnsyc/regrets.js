@@ -32,5 +32,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const LessThanOrEqual = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
-export default LessThanOrEqual;
+const LE = (a, b) => Promise.all([a, b]).then(v => v[0] <= v[1]);
+export default LE;
