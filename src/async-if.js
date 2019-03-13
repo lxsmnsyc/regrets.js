@@ -28,7 +28,6 @@
 import { resolve } from './utils';
 
 /**
- * @desc
  * Fundamental async decision-making control structure
  *
  * AsyncIf evaluates the given value, synchronous or asynchronous
@@ -39,7 +38,6 @@ import { resolve } from './utils';
  */
 export default class AsyncIf {
   /**
-   * @desc
    * Creates an AsyncIf instance
    *
    * It is highly recommended that the given value
@@ -50,7 +48,6 @@ export default class AsyncIf {
    */
   constructor(promise) {
     /**
-     * @desc
      * The promise context of the AsyncIf instance
      * @type {?Promise}
      */
@@ -58,7 +55,6 @@ export default class AsyncIf {
   }
 
   /**
-   * @desc
    * Attaches a callback to an AsyncIf instance and executes
    * the callback if the AsyncIf's resolved value is truthy.
    * @example
@@ -76,7 +72,6 @@ export default class AsyncIf {
   }
 
   /**
-   * @desc
    * Attaches a callback to an AsyncIf instance and executes
    * the callback if the AsyncIf's resolved value is falsey.
    * @example
@@ -94,7 +89,6 @@ export default class AsyncIf {
   }
 
   /**
-   * @desc
    * Attaches an AsyncIf to an AsyncIf instance that evaluates
    * if the AsyncIf's resolved value is falsey.
    * @example
