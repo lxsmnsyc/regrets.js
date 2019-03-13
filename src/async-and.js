@@ -25,7 +25,7 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
-
+import { all } from './utils';
 /**
  * @desc
  * Asynchronously apply a logical conjunction.
@@ -33,5 +33,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const And = (a, b) => Promise.all([a, b]).then(v => v[0] && v[1]);
+const And = (a, b) => all([a, b]).then(v => v[0] && v[1]);
 export default And;
