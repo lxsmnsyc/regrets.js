@@ -27,4 +27,3 @@
  */
 export const resolve = Promise.resolve.bind(Promise);
 export const all = Promise.all.bind(Promise);
-
