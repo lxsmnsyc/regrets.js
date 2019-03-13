@@ -32,5 +32,5 @@
  * @param {?Promise} b
  * @return {Promise}
  */
-const NotEquals = (a, b) => Promise.all([a, b]).then(v => v[0] !== v[1]);
-export default NotEquals;
+const NE = (a, b) => Promise.all([a, b]).then(v => v[0] !== v[1]);
+export default NE;
