@@ -26,9 +26,14 @@
  * @copyright Alexis Munsayac 2019
  */
 import { resolve } from './utils';
-// eslint-disable-next-line max-len
+
+/**
+ * @ignore
+ */
 const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator() : evaluator).then(
-  x => (x ? resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
+  x => (x ? resolve(scope()).then(
+    () => While(evaluator, scope, isFunction),
+  ) : false),
 );
 
 /**
@@ -43,9 +48,14 @@ export default class AsyncWhile {
   /**
    * @desc
    * Creates an AsyncWhile instance
-   * @param {Function|Promise} evaluator a Promise or a function that is evaluated every cycle.
+   * @param {Function|Promise|any} evaluator a Promise or a function that is evaluated every cycle.
    */
   constructor(evaluator) {
+    /**
+     * @desc
+     * a Promise or a function that is evaluated every cycle.
+     * @type {Function|Promise|any}
+     */
     this.evaluator = evaluator;
   }
 
@@ -53,10 +63,11 @@ export default class AsyncWhile {
    * @desc
    * Attaches a callback to the AsyncWhile that is executed while the evaluator resolves to true.
    * @param {Function} scope
-   * @returns {AsyncWhile} the same reference
+   * @example
+   * new AsyncWhile(() => x < 3).do(() => x++);
+   * @returns {Promise}
    */
   do(scope) {
-    While(this.evaluator, scope, typeof this.evaluator === 'function');
-    return this;
+    return While(this.evaluator, scope, typeof this.evaluator === 'function');
   }
 }
