@@ -25,11 +25,12 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+import { resolve } from './utils';
 /**
  * @desc
  * Asynchronously apply an logical negation
  * @param {?Promise} x
  * @return {Promise}
  */
-const Not = x => Promise.resolve(x).then(y => !y);
+const Not = x => resolve(x).then(y => !y);
 export default Not;
