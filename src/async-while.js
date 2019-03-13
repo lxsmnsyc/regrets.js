@@ -25,9 +25,10 @@
  * @author Alexis Munsayac <alexis.munsayac@gmail.com>
  * @copyright Alexis Munsayac 2019
  */
+import { resolve } from './utils';
 // eslint-disable-next-line max-len
-const While = (evaluator, scope, isFunction) => Promise.resolve(isFunction ? evaluator() : evaluator).then(
-  x => (x ? Promise.resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
+const While = (evaluator, scope, isFunction) => resolve(isFunction ? evaluator() : evaluator).then(
+  x => (x ? resolve(scope()).then(() => While(evaluator, scope, isFunction)) : false),
 );
 
 /**
